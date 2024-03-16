@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan Care</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .chat-history {
+            height: 200px;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .user-message {
+            background-color: #f2f2f2;
+            color: #333;
+            border-radius: 5px;
+            padding: 8px 12px;
+            max-width: 70%;
+            word-wrap: break-word;
+            margin-right: auto;
+        }
+
+        .bot-message {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 12px;
+            max-width: 70%;
+            word-wrap: break-word;
+            margin-left: auto;
+        }
+
+        .chat-input {
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chat-input input[type="text"] {
+            flex: 1 1 calc(100% - 20px);
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .chat-input input[type="submit"] {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .refresh-button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .auth-buttons {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .auth-buttons button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="hospital_image.png" alt="Hospital Image" width="50"> Sultan Care Chat
+        </div>
+        <div class="chat-history" id="chat-history">
+            <div class="chat-message bot-message">How may I help you today?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <input type="submit" value="Send" onclick="sendMessage()">
+        </div>
+        <button class="refresh-button" onclick="refreshChat()">Refresh Chat</button>
+        <div class="auth-buttons">
+            <button onclick="signIn()">Sign In</button>
+            <button onclick="logIn()">Log In</button>
+            <button onclick="signUp()">Sign Up</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById('user-input').value;
+            if (userInput.trim() === '') return;
+            
+            addMessage(userInput, 'user');
+            document.getElementById('user-input').value = '';
+
+            // Here you would handle the AI response, for now let's simulate a bot response
+            setTimeout(function() {
+                var botResponse = "This is a simulated response from the AI.";
+                addMessage(botResponse, 'bot');
+            }, 500);
+        }
+
+        function addMessage(message, sender) {
+            var chatHistory = document.getElementById('chat-history');
+            var messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message');
+            messageElement.innerHTML = '<div class="' + sender + '-message">' + message + '</div>';
+            chatHistory.appendChild(messageElement);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        function refreshChat() {
+            document.getElementById('chat-history').innerHTML = '<div class="chat-message bot-message">How may I help you today?</div>';
+        }
+
+        function signIn() {
+            // Implement sign in functionality here
+            console.log('Sign In clicked');
+        }
+
+        function logIn() {
+            // Implement log in functionality here
+            console.log('Log In clicked');
+        }
+
+        function signUp() {
+            // Implement sign up functionality here
+            console.log('Sign Up clicked');
+        }
+    </script>
+</body>
+</html>
